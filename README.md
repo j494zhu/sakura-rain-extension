@@ -35,9 +35,7 @@ Control every aspect of the simulation through the popup panel:
 Since this extension is currently in development (or pending Store approval), you can install it manually:
 
 1.  **Clone the repository**
-    ```bash
-    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-    ```
+    * https://github.com/j494zhu/sakura-rain-extension.git
 
 2.  **Open Chrome Extensions**
     * Navigate to `chrome://extensions/` in your browser.
