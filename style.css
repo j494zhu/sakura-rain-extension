@@ -1,0 +1,68 @@
+body {
+    width: 300px;
+    padding: 15px;
+    /* Changed to handwritten font stack */
+    font-family: 'Segoe Print', 'Bradley Hand', 'Comic Sans MS', cursive;
+    /* Changed background to white */
+    background: #ffffff;
+    color: #333;
+}
+
+/* Header */
+h3 {
+    /* Adjusted text color to pop nicely on white */
+    color: #ff69b4; 
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 2px solid #ffb7c5;
+    padding-bottom: 10px;
+}
+
+/* Item gap */
+.control-group {
+    margin-bottom: 10px;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+}
+
+input[type="range"] {
+    width: 100%;
+    /* New Sakura Pink accent color */
+    accent-color: #ff85a2;
+    cursor: pointer;
+    display: block;
+}
+
+input[type="checkbox"] {
+    /* Matching accent color */
+    accent-color: #ff85a2;
+    cursor: pointer;
+}
+
+.value-display {
+    color: #ff69b4;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.divider {
+    border-top: 1px dashed #ffb7c5;
+    margin: 15px 0;
+}
+
+/* turn gray when scroll bar is disabled */
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
