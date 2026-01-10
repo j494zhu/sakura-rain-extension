@@ -2,7 +2,7 @@
 
 A lightweight, high-performance Chrome Extension that brings a calming cherry blossom (Sakura) rain effect to any webpage.
 
-![Sakura Rain Demo](demo_1.png)
+![Sakura Rain Demo](demo_2.png)
 
 Built with Vanilla JavaScript and HTML5 Canvas, featuring custom physics simulation and a highly customizable configuration panel.
 
@@ -74,6 +74,7 @@ Click the extension icon in the browser toolbar to open the control panel.
 ├── popup.html          # Settings UI
 ├── style.css           # UI Styling
 ├── demo_1.png          # Preview Image
+├── demo_2.png          # Preview Image
 └── js/
     ├── main.js         # Entry point
     ├── SakuraPetal.js  # Petal class & rendering logic
