@@ -4,9 +4,7 @@
     "version": "1.0",
     "description": "A 100% customizable, lightweight sakura rain effect for any webpage.",
     "permissions": [
-        "activeTab",
-        "scripting",
-        "storage"
+        "activeTab"
     ],
     "action": {
         "default_popup": "popup.html",
