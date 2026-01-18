@@ -60,8 +60,8 @@ class SakuraPetal {
         this.flip += this.flipSpeed;
 
         if (this.y > this.canvasHeight + 50 || 
-            this.x > this.canvasWidth + 550 || 
-            this.x < -550) {
+            this.x > this.canvasWidth + 500 || 
+            this.x < -500) {
             this.reset(false);
         }
     }
