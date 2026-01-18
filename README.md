@@ -1,83 +1,95 @@
-# Sakura Rain Extension
+# Sakura Rain Extension 🌸
 
 A lightweight, high-performance Chrome Extension that brings a calming cherry blossom (Sakura) rain effect to any webpage.
 
 ![Sakura Rain Demo](demo_2.png)
 
-Built with Vanilla JavaScript and HTML5 Canvas, featuring custom physics simulation and a highly customizable configuration panel.
+> **New in v2.0:** Rebuilt with **React** & **Vite** for the UI, and upgraded to a **Noise-based Physics Engine** for organic movement.
 
 ## Key Features
 
-### 1. Procedural Geometry & Physics Simulation
-Instead of using static images, every petal is mathematically rendered in real-time.
-* **Mathematical Modeling**: Petals are drawn using a combination of **Cubic Bezier Curves** (`bezierCurveTo`) for the organic body shape and **Quadratic Curves** (`quadraticCurveTo`) to precisely render the signature **notch** at the petal's tip.
-* **Physics Engine**: Implements a custom physics model handling gravity, aerodynamic drag, and wind force vectors.
-* **Dynamic Motion**: Features a unique sway mechanism where petals rotate and flip in 3D space (simulated via 2D transformation matrices) as they fall.
+### 1. Advanced Aerodynamics & Noise Simulation (New!)
+Unlike typical particle effects that use repetitive Sine waves, this extension simulates the chaotic nature of real wind.
+* **Value Noise Algorithm:** Replaced standard trigonometric oscillation with a custom **1D Value Noise** implementation. This ensures wind direction changes are smooth, non-periodic, and unpredictable—just like nature.
+* **Gust Curve Physics:** Implements an exponential power curve (Gust Power ~ 1.6) to process noise data. This mimics real-world fluid dynamics where long periods of gentle breeze are punctuated by sudden, stronger gusts.
+* **Procedural Geometry:** Petals are rendered in real-time using **Cubic Bezier Curves** and **Quadratic Curves** to form organic shapes with the signature "notch" at the tip.
 
-*(See Configurations for more detailed spec)*
+### 2. Modern React UI (New!)
+The control panel has been completely refactored from vanilla HTML/JS to a modern component-based architecture.
+* **React 18 + Vite:** High-performance, reactive UI updates.
+* **Hot Module Replacement (HMR):** Streamlined development workflow.
+* **Component-Driven:** Modular `ControlItem` components for scalable settings management.
 
-### 2. Fully Customizable
-Control every aspect of the simulation through the popup panel:
-* **Density**: Adjust the total number of active particles on the screen.
-* **Petal Size**: Toggle between a fixed size or allow random size variations.
-* **Wind Speed**: Control the horizontal wind force and direction.
-* **Gravity**: Adjust the vertical falling speed of the petals.
-* **Rotation**: Control the angular velocity (self-spin speed) of the petals.
-* **Sway**: Fine-tune the amplitude of the horizontal left-right oscillation.
-* **Opacity**: Adjust the global transparency level of the petals to prevent text obstruction.
+### 3. Fully Customizable
+Control every aspect of the simulation through the new React popup panel:
+* **Density & Size:** Adjust particle count and toggle between static or random size variations.
+* **Wind Dynamics:** Control Base Speed, Gust Frequency, and Gust Range.
+* **Physics Modifiers:** Fine-tune Gravity, Rotation Speed, and 3D Sway amplitude.
+* **Visuals:** Adjust global opacity to ensure text readability on any website.
 
-### 3. High Performance
-* **Canvas Rendering**: Utilizes the HTML5 `<canvas>` API for efficient batch rendering of hundreds of particles without DOM layout thrashing.
-* **Zero Dependencies**: Written in vanilla JavaScript to ensure maximum speed and minimal footprint.
+## Tech Stack
+
+* **Frontend UI:** React 18, Vite
+* **Core Logic:** Vanilla JavaScript (ES6+)
+* **Rendering:** HTML5 Canvas API (High-performance batch rendering)
+* **Math:** Custom Value Noise & Bezier Curves
 
 ## Installation (Developer Mode)
 
-Since this extension is currently in development (or pending Store approval), you can install it manually:
+To run this extension locally:
 
 1.  **Clone the repository**
-    * https://github.com/j494zhu/sakura-rain-extension.git
+    ```bash
+    git clone [https://github.com/j494zhu/sakura-rain-extension.git](https://github.com/j494zhu/sakura-rain-extension.git)
+    cd sakura-rain-extension
+    ```
 
-2.  **Open Chrome Extensions**
+2.  **Build the UI**
+    The popup UI needs to be compiled before use.
+    ```bash
+    cd react-popup
+    npm install
+    npm run build
+    ```
+    *(This will generate the `react-popup/dist` folder required by Chrome)*
+
+3.  **Load into Chrome**
     * Navigate to `chrome://extensions/` in your browser.
     * Enable **Developer mode** in the top right corner.
-
-3.  **Load Unpacked**
-    * Click the **Load unpacked** button.
-    * Select the directory where you cloned this repository.
+    * Click **Load unpacked**.
+    * Select the **root directory** of this project (`sakura-rain-extension`).
 
 4.  **Enjoy**
-    * The extension is now active. Open any webpage to see the effect!
+    * Open any webpage to see the cherry blossoms fall!
 
 ## Configuration
 
-Click the extension icon in the browser toolbar to open the control panel.
+Click the extension icon to open the React control panel.
 
 | Setting | Description |
 | :--- | :--- |
-| **Density** | Controls the total density of petals on the screen. |
-| **Petal Size** | Enable "Static Petal Size" for fixed dimensions, or disable for random variations. |
-| **Wind Mode** | Enable "Static Wind Speed" to lock at Base Speed. Disable to activate dynamic gusts. |
-| **Gust Settings** | Adjust "Frequency" (keep low) and "Range" to simulate natural wind changes. |
-| **Gravity** | Adjusts the vertical falling speed of the petals. |
-| **Rotation** | Controls the 2D spinning velocity of the petals. |
-| **Sway** | Controls the 3D swaying/flipping amplitude. |
-| **Opacity** | Adjusts the global transparency level of the petals. |
+| **Density** | Controls the total number of active petals (Performance optimized). |
+| **Wind Mode** | Disable "Static Wind Speed" to activate the **Noise-based Gust System**. |
+| **Gust Freq/Range** | Controls how fast the noise map is traversed and the amplitude of wind variation. |
+| **Gravity** | Adjusts the vertical falling velocity. |
+| **Rotation** | Controls the angular velocity (2D spin). |
+| **Sway** | Controls the 3D flipping amplitude (simulated via scale matrices). |
 
-> **Note:** To reset the simulation to its default settings, simply refresh the current webpage.
-> **Note:** The animation views better under dark backgrounds. 
+> **Note:** The animation is best viewed on dark-themed websites.
 
 ## Project Structure
 
 ```text
 .
-├── manifest.json       # Extension configuration
-├── popup.html          # Settings UI
-├── style.css           # UI Styling
-├── demo_1.png          # Preview Image
-├── demo_2.png          # Preview Image
-└── js/
-    ├── main.js         # Entry point
-    ├── SakuraPetal.js  # Petal class & rendering logic
-    ├── SakuraManager.js# Manages particle lifecycle
-    ├── Config.js       # Shared configuration state
-    └── Utils.js        # Helper functions
+├── manifest.json           # Chrome Extension Manifest (v3)
+├── js/
+│   ├── main.js             # Content Script Entry Point
+│   ├── SakuraManager.js    # Physics Loop & Noise Logic
+│   ├── SakuraPetal.js      # Petal Class & Canvas Rendering
+│   ├── noise.js            # Value Noise Algorithm
+│   └── Config.js           # State Management
+├── react-popup/            # New React UI Source
+│   ├── src/                # React Components
+│   ├── dist/               # Compiled UI (Loaded by Chrome)
+│   └── vite.config.js      # Build Configuration
+└── assets/                 # Icons and Demos
