@@ -34,8 +34,8 @@ Control every aspect of the simulation through the new React popup panel:
 * **Rendering:** HTML5 Canvas API (High-performance batch rendering)
 * **Math:** Custom Value Noise & Bezier Curves
 
-## Installation (Developer Mode)]
-You can download v1.0 on Chrome Web Store:
+## Installation (Developer Mode)
+You can download v1.0 on Chrome Web Store (and pls give me a 5-star rating if you enjoy it!!):
 ```bash
 https://chromewebstore.google.com/detail/sakura-rain-effect/eejeknfgpnmginlijbggmkgcmlenddje
 ```
